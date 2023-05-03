@@ -28,6 +28,24 @@
             document.getElementById('result').innerHTML = "tweetしました";
         }
 
+        function button2Pressed() {
+            doSelect();
+        }
+
+        async function doSelect() {
+            var sql = 'select * from Tweets order by time desc limit 20';
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            var html = '';
+            html = html + '<ul>';
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                html = html + '<li>' + object.name + ',' + object.id + ' , ' + object.tweet + ',' + object.time + '</li>';
+            }
+            html = html + '</ul>';
+            document.getElementById('result2').innerHTML = html;
+        }
+
     </script>
 
 </head>
@@ -41,6 +59,9 @@
     <button onclick="button1Pressed()">tweet</button>
     <br>
     <p id="result"></p>
+    <button onclick="button2Pressed()">X</button>
+    <p id="result2">xxxx</p>
+   
 </body>
 
 </html>
