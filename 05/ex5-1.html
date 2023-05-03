@@ -23,7 +23,7 @@
             var sql = 'select * from Tweets order by time desc limit 20';
             var objects = await osql.connect(sql);
             console.log(objects);
-            var table = [
+            var tables = [
                 { id: objects.id, name: objects.name }
             ];
             var html = '';
@@ -45,8 +45,8 @@
             ];
             var html = '';
             html = html + '<table border="1">';
-            for (var i = 0; i < table.length; i++) {
-                var table = table[i];
+            for (var i = 0; i < tables.length; i++) {
+                var table = tables[i];
                 html = html + '<tr>';
                 html = html + '<td>' + table.id+ '</td>';
                 html = html + '<td>' + table.name + '</td>';
