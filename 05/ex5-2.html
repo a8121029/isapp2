@@ -28,9 +28,10 @@
             document.getElementById('result').innerHTML = "tweetしました";
         }
 
-        function button2Pressed() {
+        $().ready(function () {
             doSelect();
         }
+        )
 
         async function doSelect() {
             var sql = 'select * from Tweets order by time desc limit 20';
@@ -59,7 +60,6 @@
     <button onclick="button1Pressed()">tweet</button>
     <br>
     <p id="result"></p>
-    <button onclick="button2Pressed()">X</button>
     <p id="result2">xxxx</p>
    
 </body>
