@@ -28,10 +28,19 @@
             document.getElementById('result').innerHTML = "tweetしました";
         }
 
+        var x;
+
         $().ready(function () {
-            doSelect();
+            x = 0;
+            setInterval(doCount, 1000);
+        });
+
+        async function doCount() {
+            x++;
+            if (x%2 == 0){
+                doSelect()
+            }
         }
-        )
 
         async function doSelect() {
             var sql = 'select * from Tweets order by time desc limit 20';
