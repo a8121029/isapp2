@@ -14,6 +14,10 @@
         function button1Pressed() {
             doSelect();
         }
+        
+        function button2Pressed() {
+            doTable();
+        }
 
         function button3Pressed() {
             doSearch();
@@ -30,6 +34,26 @@
                 html = html + '<li>' + object.name + ',' + object.id + ' , ' + object.tweet + ',' + object.time + '</li>';
             }
             html = html + '</ul>';
+            document.getElementById('result').innerHTML = html;
+        }
+
+        async function doTable() {
+            var sql = 'select * from Tweets order by time desc limit 20';
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            var tables = [
+                { id: objects.id, name: objects.name },
+                ];
+            var html = '';
+            html = html + '<table border="1">';
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                html = html + '<tr>';
+                html = html + '<td>' + object.id + '</td>';
+                html = html + '<td>' + object.name + '</td>';
+                html = html + '</tr>';
+            }
+            html = html + '</table>';
             document.getElementById('result').innerHTML = html;
         }
 
@@ -56,6 +80,8 @@
 <body>
     <h1>Tweets</h1>
     <button onclick="button1Pressed()">ツイートを表示</button>
+    <br>
+    <button onclick="button2Pressed()">id,名前の表を表示</button>
     <br>
     <input type = "text" id = "SW">
     <button onclick = "button3Pressed()">検索</button>
