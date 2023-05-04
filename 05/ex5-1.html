@@ -15,6 +15,10 @@
             doSelect();
         }
 
+        function button3Pressed() {
+            doSearch();
+        }
+
         async function doSelect() {
             var sql = 'select * from Tweets order by time desc limit 20';
             var objects = await osql.connect(sql);
@@ -29,6 +33,22 @@
             document.getElementById('result').innerHTML = html;
         }
 
+        async function doSearch() {
+            var SW = document.getElementById("SW").value
+            console.log(SW)
+            var sql = 'select * from Tweets where tweet like "%' + SW + '%"'
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            var html = " "
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                html = html + '<li>' + object.name + ',' + object.id + ' , ' + object.tweet + ',' + object.time + '</li>';
+            }
+            html = html + "</ul>" ;
+            document.getElementById('result').innerHTML = html;
+        }
+
+
     </script>
 
 </head>
@@ -37,7 +57,8 @@
     <h1>Tweets</h1>
     <button onclick="button1Pressed()">ツイートを表示</button>
     <br>
-    
+    <input type = "text" id = "SW">
+    <button onclick = "button3Pressed()">検索</button>
     <hr>
     <p id="result">xxxx</p>
 </body>
