@@ -17,6 +17,11 @@
             var name = sessionStorage.getItem('name');
             document.getElementById('welcome').innerHTML = 'ようこそ' + name + 'さん';
         }
+
+        function buttonPressed2() {
+            location.href = 'update.html?name=';
+        }
+
     </script>
 
 </head>
@@ -25,6 +30,7 @@
     <h1>ユーザトップ</h1>
     名前:<input id="tf1" value="名前" type="textfield">
     <button onclick="buttonPressed()">ログイン</button>
+    <button onclick="buttonPressed2()">ユーザ情報変更</button>
     <p id="welcome"></p>
     <hr>
 
