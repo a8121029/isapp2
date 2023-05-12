@@ -32,12 +32,23 @@
             html = html + '</table>';
             document.getElementById('result').innerHTML = html;
         }
+
+        async function button5Pressed() {
+            var userID = document.getElementById('tf5').value
+            console.log(userID)
+            var deletesql = `delete from Users where id = "${userID}"`;
+            var deleteobjects = await osql.connect(deletesql);
+            console.log(deleteobjects);
+            execSelect()
+        }
     </script>
 
 </head>
 
 <body>
     <h1>Users</h1>
+    ID:<input id="tf5" type="textfield">
+    <button onclick="button5Pressed()">消去</button>
     <p id="result">xxxx</p>
 </body>
 
