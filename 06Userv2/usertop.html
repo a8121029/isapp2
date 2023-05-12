@@ -22,10 +22,17 @@
             location.href = 'update.html';
         }
 
-        function buttonPressed3() {
-            var name = document.getElementById('tf1').value;
-            sessionStorage.setItem('name', name);
-            location.href = 'twitter.html';
+        async function buttonPressed3() {
+            var username = document.getElementById('tf1').value;
+            var sql = `select * from Users where name="${username}";`
+            var objects = await osql.connect(sql);
+            console.log(objects)
+            var user = objects[0];
+            var userid = user.id
+            console.log(userid)
+            sessionStorage.setItem('userid', userid);
+            location.href = 'twitter.html'
+
         }
 
     </script>
