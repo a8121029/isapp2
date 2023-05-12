@@ -32,17 +32,15 @@
             }
             html = html + '</table>';
             document.getElementById('result').innerHTML = html;
+            return{
+                i,
+            }
         }
 
         async function button5Pressed() {
-            var sql = 'select * from Users';
-            var objects = await osql.connect(sql);
-            console.log(objects);
-            var object = objects[i];
-            var deletesql = `delete from Users where id = "${object.id}"`;
-            var deleteobjects = await osql.connect(deletesql);
-            console.log(deleteobjects);
-            execSelect()
+            var number = execSelect().i
+            console.log(number);
+            
         }
     </script>
 
