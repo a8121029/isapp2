@@ -22,6 +22,12 @@
             location.href = 'update.html';
         }
 
+        function buttonPressed3() {
+            var name = document.getElementById('tf1').value;
+            sessionStorage.setItem('name', name);
+            location.href = 'twitter.html';
+        }
+
     </script>
 
 </head>
@@ -31,6 +37,7 @@
     名前:<input id="tf1" value="名前" type="textfield">
     <button onclick="buttonPressed()">ログイン</button>
     <button onclick="buttonPressed2()">ユーザ情報変更</button>
+    <button onclick="buttonPressed3()">Twitterへ移動</button>
     <p id="welcome"></p>
     <hr>
 
