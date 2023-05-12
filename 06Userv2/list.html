@@ -27,6 +27,7 @@
                 html = html + '<td>' + object.id + '</td>';
                 html = html + '<td>' + object.name + '</td>';
                 html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
+                html = html + '<td>' + '<button onclick="button5Pressed()">消去</button>' + '</td>';
                 html = html + '</tr>';
             }
             html = html + '</table>';
@@ -34,9 +35,11 @@
         }
 
         async function button5Pressed() {
-            var userID = document.getElementById('tf5').value
-            console.log(userID)
-            var deletesql = `delete from Users where id = "${userID}"`;
+            var sql = 'select * from Users';
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            var object = objects[i];
+            var deletesql = `delete from Users where id = "${object.id}"`;
             var deleteobjects = await osql.connect(deletesql);
             console.log(deleteobjects);
             execSelect()
@@ -47,8 +50,6 @@
 
 <body>
     <h1>Users</h1>
-    ID:<input id="tf5" type="textfield">
-    <button onclick="button5Pressed()">消去</button>
     <p id="result">xxxx</p>
 </body>
 
