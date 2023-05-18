@@ -63,6 +63,20 @@
             document.getElementById('result2').innerHTML = html;
         }
 
+        async function button2Pressed() {
+            var fromid = document.getElementById('tf1').value;
+            var toid = document.getElementById('tf3').value;
+            var ans = window.confirm('フォローします');
+            if(ans == true){
+                var sql = `insert into Follows(fromid, toid) values("${fromid}","${toid}")`
+                var objects = await osql.connect(sql);
+                console.log(objects);
+                var sql2 = 'select * from Follows'
+                var ObjectS = await osql.connect(sql2);
+                console.log(ObjectS);
+        }
+    }
+
     </script>
 
 </head>
@@ -70,13 +84,13 @@
 <body>
     <h1>Tweets</h1>
     <br>
-    名前:<input id="tf1" value="" type="textfield">
-    <br>
-    tweet:<input id="tf2" type="textfield">
-    <button onclick="button1Pressed()">tweet</button>
-    フォローするID:<input id="tf2" type="textfield">
-    <br>
-    <p id="result"></p>
+    自分のID:<input id="tf1" value="" type="textfield">
+    ツイート内容:<input id="tf2" type="textfield">
+    <button onclick="button1Pressed()">ツイートする</button>
+    <hr>   
+    フォローするID:<input id="tf3" type="textfield">
+    <button onclick="button2Pressed()">フォローする</button>
+    <hr>
     <p id="result2">xxxx</p>
    
 </body>
